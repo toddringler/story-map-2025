@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Mapbox 3D Terrain Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Mapbox GL JS CSS -->
+  <link
+    href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .info-box {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: white;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+<div class="info-box">
+  <strong>3D Terrain Enabled</strong><br/>
+  Drag to rotate. Scroll to zoom.
+</div>
+
+<!-- Mapbox GL JS -->
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoidGFjby1vdmVybGFuZGVyIiwiYSI6ImNtbDhtNTV1eDA5dHYzZHBqbWEycWtpcmsifQ.XsVNuBWpw8Yti-lQ1Barlw';
+
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/outdoors-v12',
+    center: [-123.75, 47.4889], // Colonel Bob Peak
+    zoom: 9,
+    pitch: 0,
+    bearing: 0,
+    antialias: true
+  });
+
+  map.addControl(new mapboxgl.NavigationControl());
+
+  map.on('load', () => {
+
+    // Add DEM source
+    map.addSource('mapbox-dem', {
+      type: 'raster-dem',
+      url: 'mapbox://mapbox.terrain-rgb',
+      tileSize: 512,
+      maxzoom: 14
+    });
+
+    // Enable 3D terrain
+    map.setTerrain({
+      source: 'mapbox-dem',
+      exaggeration: 1.5
+    });
+
+    // Add sky layer for better 3D effect
+    map.addLayer({
+      id: 'sky',
+      type: 'sky',
+      paint: {
+        'sky-type': 'atmosphere',
+        'sky-atmosphere-sun': [0.0, 0.0],
+        'sky-atmosphere-sun-intensity': 15
+      }
+    });
+    
+  // Add vector tileset as a source
+  map.addSource('track', {
+    type: 'vector',
+    url: 'mapbox://taco-overlander.7t7s89oa'
+  });
+
+  // Add a line layer using the tileset
+  map.addLayer({
+    id: 'track-layer',
+    type: 'line',
+    source: 'track',
+    'source-layer': 'full-track-2025-6jngjb',
+    layout: {
+      'line-join': 'round',
+      'line-cap': 'round'
+    },
+    paint: {
+      'line-color': '#FF0000',
+      'line-width': 4
+    }
+  });
+
+      setTimeout(() => {
+      map.flyTo({
+      center: [-123.75, 47.4889],
+      zoom: 15,
+      pitch: 70,
+      bearing: -90,
+      duration: 4000,
+      essential: true
+    });
+  }, 2000);
+
+});
+
+</script>
+
+</body>
+</html>
