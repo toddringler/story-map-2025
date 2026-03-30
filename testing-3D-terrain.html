@@ -48,9 +48,10 @@
 
 <!-- Mapbox GL JS -->
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+<script src="./mapbox-token.js"></script>
 
 <script>
-  mapboxgl.accessToken = 'pk.eyJ1IjoidGFjby1vdmVybGFuZGVyIiwiYSI6ImNtbGp3cThxcTA1MXozZXEwbGsya291NXkifQ.A4OafISbHb4XhIqJmApEZg';
+  mapboxgl.accessToken = window.MAPBOX_ACCESS_TOKEN || '';
 
   const map = new mapboxgl.Map({
     container: 'map',

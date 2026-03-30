@@ -1,0 +1,12 @@
+# Mapbox token file (keep your actual token private)
+mapbox-token.js
+
+# macOS
+.DS_Store
+
+# Editor directories
+.vscode/
+.idea/
+
+# Node modules (if you add build tools later)
+node_modules/
