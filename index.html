@@ -42,7 +42,7 @@
         #header h2,
         #header p {
             margin: 0;
-            padding: 2vh 2vw;
+            padding: 0.75vh 2vw;
             text-align: center;
         }
 
@@ -78,8 +78,8 @@
         }
 
         .righty {
-            width: 40vw;
-            margin-left: 62vw;
+            width: 45vw;
+            margin-left: 52vw;
         }
 
         .fully {
@@ -104,12 +104,12 @@
         }
 
         .step.active {
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         .step div {
-            padding: 25px 50px;
-            line-height: 25px;
+            padding: 1px 20px;
+            line-height: 15px;
             font-size: 13px;
         }
 
@@ -297,9 +297,9 @@
             if (config.use3dTerrain) {
                 map.addSource('mapbox-dem', {
                     'type': 'raster-dem',
-                    'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+                    'url': 'mapbox://mapbox.terrain-rgb',
                     'tileSize': 512,
-                    'maxzoom': 14
+                    'maxzoom': 9
                 });
                 // add the DEM source as a terrain layer with exaggerated height
                 map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
@@ -312,6 +312,28 @@
                         'sky-type': 'atmosphere',
                         'sky-atmosphere-sun': [0.0, 0.0],
                         'sky-atmosphere-sun-intensity': 15
+                    }
+                });
+
+                // Add vector tileset as a source
+                map.addSource('track', {
+                    type: 'vector',
+                    url: 'mapbox://taco-overlander.7t7s89oa'
+                });
+
+                // Add a line layer using the tileset
+                map.addLayer({
+                    id: 'track-layer',
+                    type: 'line',
+                    source: 'track',
+                    'source-layer': 'full-track-2025-6jngjb',
+                    layout: {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                    },
+                    paint: {
+                    'line-color': '#FF0000',
+                    'line-width': 4
                     }
                 });
             };
@@ -331,7 +353,12 @@
                     map[chapter.mapAnimation || 'flyTo'](chapter.location);
 
                     if (config.showMarkers) {
-                        marker.setLngLat(chapter.location.center);
+                        if (chapter.showMarker !== false) {
+                            marker.setLngLat(chapter.location.center);
+                            marker.addTo(map);
+                        } else {
+                            marker.remove();
+                        }
                     }
                     if (chapter.onChapterEnter.length > 0) {
                         chapter.onChapterEnter.forEach(setLayerOpacity);

@@ -12,26 +12,25 @@ var config = {
         markerColor: 'orange'
     },
     insetPosition: 'bottom-right',
-    theme: 'light',
-    use3dTerrain: true, //set true for enabling 3D maps.
+    theme: 'dark',
+    use3dTerrain: false, //set true for enabling 3D maps.
     auto: false,
-    title: 'From the Olympic Peninsula to the Arctic Ocean',
-    subtitle: '42 days, xx,000 miles, 1 big adventure.',
-    byline: 'Todd, Deb, and Simon',
+    title: 'Your Title Goes Here',
+    subtitle: 'The Storytelling Template helps you create an awesome animated map story with ease.',
+    byline: 'By a I.M. Amapper',
     footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
     chapters: [
         {
             id: 'slug-style-id',
-            showMarker: false,
-            alignment: 'right',
+            alignment: 'left',
             hidden: false,
             title: 'San Francisco',
-            image: './assets/banner.jpg',
+            image: './assets/san-fran.jpeg',
             description: 'The first chapter contains a title, image, and camera view for San Francisco, California. Update the chapter data to make it your own.',
             location: {
-                center: [-122, 58],
-                zoom: 4.1,
-                pitch: 50,
+                center: [-122.418398, 37.759483],
+                zoom: 8.5,
+                pitch: 60,
                 bearing: 0
             },
             mapAnimation: 'flyTo',
