@@ -299,7 +299,7 @@
                     'type': 'raster-dem',
                     'url': 'mapbox://mapbox.terrain-rgb',
                     'tileSize': 512,
-                    'maxzoom': 9
+                    'maxzoom': 14
                 });
                 // add the DEM source as a terrain layer with exaggerated height
                 map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
@@ -311,7 +311,7 @@
                     'paint': {
                         'sky-type': 'atmosphere',
                         'sky-atmosphere-sun': [0.0, 0.0],
-                        'sky-atmosphere-sun-intensity': 15
+                        'sky-atmosphere-sun-intensity': 1
                     }
                 });
 
@@ -396,6 +396,53 @@
                 document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
             }
         });    
+
+        // Custom markers for Olympic Peninsula chapter
+        var olympicMarkers = [];
+
+        function showOlympicMarkers() {
+            // Clear any existing markers
+            olympicMarkers.forEach(m => m.remove());
+            olympicMarkers = [];
+            
+            // Define the three locations
+            var locations = [
+                {
+                    coords: [-123.75, 47.4889],
+                    title: 'Colonel Bob Peak',
+                    color: '#FF6B6B'
+                },
+                {
+                    coords: [-124.37, 47.61],
+                    title: 'Tide Pooling',
+                    color: '#4ECDC4'
+                },
+                {
+                    coords: [-123.498, 47.969],
+                    title: 'Hurricane Ridge',
+                    color: '#95E1D3'
+                }
+            ];
+            
+            // Create markers
+            locations.forEach(function(loc) {
+                var popup = new mapboxgl.Popup({ offset: 25, closeButton: false, closeOnClick: false })
+                    .setText(loc.title);
+                    
+                var marker = new mapboxgl.Marker({ color: loc.color })
+                    .setLngLat(loc.coords)
+                    .setPopup(popup)
+                    .addTo(map)
+                    .togglePopup();
+                    
+                olympicMarkers.push(marker);
+            });
+        }
+
+        function hideOlympicMarkers() {
+            olympicMarkers.forEach(m => m.remove());
+            olympicMarkers = [];
+        }
 
     </script>
 

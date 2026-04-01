@@ -1,5 +1,5 @@
 var config = {
-    // style: 'mapbox://styles/mapbox/streets-v12',
+    style: 'mapbox://styles/mapbox/outdoors-v12',
     // leave commented to use Mapbox Standard Style
     accessToken: window.MAPBOX_ACCESS_TOKEN || '',
     showMarkers: true,
@@ -21,7 +21,7 @@ var config = {
     footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
     chapters: [
         {
-            id: 'slug-style-id',
+            id: 'intro-identifier',
             showMarker: false,
             alignment: 'right',
             hidden: false,
@@ -36,7 +36,72 @@ var config = {
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
-            callback: '',
+            callback: 'hideOlympicMarkers',
+            onChapterEnter: [
+                // {
+                //     layer: 'layer-name',
+                //     opacity: 1,
+                //     duration: 5000
+                // }
+            ],
+            onChapterExit: [
+                // {
+                //     layer: 'layer-name',
+                //     opacity: 0
+                // }
+            ]
+        },
+        {
+            id: 'olympic-peninsula-identifier',
+            showMarker: false,
+            alignment: 'right',
+            hidden: false,
+            title: 'Olympic Peninsula',
+            subtitle: 'The adventure begins',
+            //image: './assets/banner.jpg',
+            description: 'Day 1 to Day 5  <br> <br>Mile 0 to xxx <br> <br> Colonel Bob Peak, Tide Pooling, Hurricane Ridge.',
+            location: {
+                center: [-122.5, 47.8],
+                zoom: 8.0,
+                pitch: 10,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: 'showOlympicMarkers',
+            onChapterEnter: [
+                // {
+                //     layer: 'layer-name',
+                //     opacity: 1,
+                //     duration: 5000
+                // }
+            ],
+            onChapterExit: [
+                // {
+                //     layer: 'layer-name',
+                //     opacity: 0
+                // }
+            ]
+        },
+        {
+            id: 'colonel-bob-peak-identifier',
+            showMarker: false,
+            alignment: 'right',
+            hidden: false,
+            title: 'Colonel Bob Peak',
+            image: './assets/banner.jpg',
+            description: 'Day 1 to Day 5  <br> <br>Mile 0 to xxx <br> <br> Colonel Bob Peak, Tide Pooling, Hurricane Ridge.',
+            location: {
+                center: [-123.75, 47.4889],
+                zoom: 15,
+                pitch: 70,
+                bearing: -90,
+                duration: 4000,
+                essential: true
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: 'hideOlympicMarkers',
             onChapterEnter: [
                 // {
                 //     layer: 'layer-name',
