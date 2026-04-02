@@ -25,9 +25,9 @@ var config = {
             showMarker: false,
             alignment: 'right',
             hidden: false,
-            title: 'San Francisco',
+            title: 'Setting the Scene',
             image: './assets/banner.jpg',
-            description: 'The first chapter contains a title, image, and camera view for San Francisco, California. Update the chapter data to make it your own.',
+            description: 'We were looking for a big adventure. So I quit my job in late 2024, bought a truck, put on a camper, and spent the spring of 2025 trying to figure out the whole overlanding thing. <br> <br> We were looking for majestic landscapes in wild and remote places. As a way to draw us as far north as we could go, we settled on Tuktoyaktuk, an Inuvialuit community on the coast of the Arctic Ocean, as the destination. Every mile, from the Olympic Peninsula to Tuk, was new to us. As we slowly make our way north, the sense of awe became overwhelming. Without any hope of doing justice to the landscape or the adventure, here it is. <br> <br> We hope you enjoy.',
             location: {
                 center: [-122, 58],
                 zoom: 4.1,
@@ -36,7 +36,7 @@ var config = {
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
-            callback: 'hideOlympicMarkers',
+            callback: 'hideAllRegions',
             onChapterEnter: [
                 // {
                 //     layer: 'layer-name',
@@ -101,7 +101,7 @@ var config = {
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
-            callback: 'hideOlympicMarkers',
+            callback: 'hideAllRegions',
             onChapterEnter: [
                 // {
                 //     layer: 'layer-name',
@@ -115,6 +115,126 @@ var config = {
                 //     opacity: 0
                 // }
             ]
+        },
+        {
+            id: 'vancouver-island-identifier',
+            showMarker: false,
+            alignment: 'right',
+            hidden: false,
+            title: 'Vancouver Island',
+            //image: './assets/banner.jpg',
+            description: 'Day x to Day 7  <br> <br>Mile 0 to xxx <br> <br> Orca, logging trucks, and coastal adventures.',
+            location: {
+                center: [-123.5, 49.8],
+                zoom: 6.0,
+                pitch: 0,
+                bearing: -20
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: 'showVancouverIslandMarkers',
+            onChapterEnter: [],
+            onChapterExit: []
+        },
+        {
+            id: 'inner-passage-ferry-identifier',
+            showMarker: false,
+            alignment: 'right',
+            hidden: false,
+            title: 'Inner Passage Ferry',
+            //image: './assets/banner.jpg',
+            description: 'Day x to Day x  <br> <br>Mile xxx to xxx <br> <br> Coastal ferry route through Southeast Alaska.',
+            location: {
+                center: [-127.0, 53.0],
+                zoom: 5,
+                pitch: 10,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: 'showInnerPassageFerry',
+            onChapterEnter: [],
+            onChapterExit: []
+        },
+        {
+            id: 'stewart-cassiar-identifier',
+            showMarker: false,
+            alignment: 'right',
+            hidden: false,
+            title: 'Stewart-Cassiar Highway',
+            //image: './assets/banner.jpg',
+            description: 'Day x to Day x  <br> <br>Mile xxx to xxx <br> <br> Remote highway through northern British Columbia.',
+            location: {
+                center: [-129.5, 59.0],
+                zoom: 6.0,
+                pitch: 10,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: 'showStewartCassiar',
+            onChapterEnter: [],
+            onChapterExit: []
+        },
+        {
+            id: 'yukon-haines-identifier',
+            showMarker: false,
+            alignment: 'right',
+            hidden: false,
+            title: 'Yukon and Haines',
+            //image: './assets/banner.jpg',
+            description: 'Day x to Day x  <br> <br>Mile xxx to xxx <br> <br> Yukon Territory and the Haines Highway.',
+            location: {
+                center: [-136.0, 60.0],
+                zoom: 6.0,
+                pitch: 10,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: 'showYukonHaines',
+            onChapterEnter: [],
+            onChapterExit: []
+        },
+        {
+            id: 'wrangell-st-elias-identifier',
+            showMarker: false,
+            alignment: 'right',
+            hidden: false,
+            title: 'Wrangell-St. Elias',
+            //image: './assets/banner.jpg',
+            description: 'Day x to Day x  <br> <br>Mile xxx to xxx <br> <br> America\'s largest national park and glaciers.',
+            location: {
+                center: [-143.0, 61.5],
+                zoom: 6.5,
+                pitch: 10,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: 'showWrangellStElias',
+            onChapterEnter: [],
+            onChapterExit: []
+        },
+        {
+            id: 'dempster-highway-identifier',
+            showMarker: false,
+            alignment: 'right',
+            hidden: false,
+            title: 'Dempster Highway',
+            //image: './assets/banner.jpg',
+            description: 'Day x to Day x  <br> <br>Mile xxx to xxx <br> <br> The highway to the Arctic Ocean and Tuktoyaktuk.',
+            location: {
+                center: [-137.0, 66.0],
+                zoom: 6.0,
+                pitch: 10,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: 'showDempsterHighway',
+            onChapterEnter: [],
+            onChapterExit: []
         },
         {
             id: 'second-identifier',
@@ -137,7 +257,7 @@ var config = {
             },
             mapAnimation: 'flyTo',
             rotateAnimation: true,
-            callback: '',
+            callback: 'hideAllRegions',
             onChapterEnter: [],
             onChapterExit: []
         },
